@@ -1,0 +1,123 @@
+.Story {
+  background-color: #1AAB8A;
+  position: relative;
+  text-decoration: none;
+  line-height: 1.2em;
+  padding: 15px 15px 15px 70px;
+  box-sizing: border-box;
+  margin: 0 0 15px;
+  transition: all 0.35s ease-out;
+  min-height: 72px;
+}
+
+.Story:hover {
+  background-color: white;
+}
+
+.Story::before, 
+.Story::after {
+  content: "";
+  height: 4px;
+  width: 0;
+  position: absolute;
+  background: #1AAB8A;
+  transition: all 0.35s ease-out;
+}
+
+.Story::before {
+  top: 0;
+  left: 0;
+}
+
+.Story::after {
+  bottom: 0;
+  right: 0;
+}
+
+.Story:hover::before,
+.Story:hover::after {
+  width: 100%;
+}
+
+.Story__score-wrapper {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.Story__score {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: courier;
+  width: 45px;
+  height: 45px;
+  background: #E91E63;
+  text-shadow: 0 1px 1px black;
+  border-radius: 100%;
+  color: white;
+  line-height: 45px;
+  text-align: center;
+  position: relative;
+}
+
+.Story__score:after {
+  content: "";
+  pointer-events: none;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -70px;
+  left: -70px;
+  transition-delay: 0;
+  transform: rotate(45deg);
+  opacity: 0.75;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%,
+    rgba(255,255,255,1) 53%,
+    rgba(255,255,255,1) 64%,
+    rgba(255,255,255,0) 100%);
+}
+
+.Story:hover .Story__score::after {
+  top: 40px;
+  left: 40px;
+  transition: all .35s ease-out;
+  transition-delay: .35s;
+}
+
+.Story__title {
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: .1em;
+  margin: 0;
+  color: white;
+  text-shadow: 0 1px 11px rgba(0,0,0,0.5);
+  transition: all 0.35s ease-out;
+}
+
+.Story:hover .Story__title {
+  text-shadow: 0 1px 11px rgba(0,0,0,0);
+  color: #E91E63;
+}
+
+.Story__date {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  letter-spacing: .2em;
+  transition: all 0.35s ease-out;
+}
+
+.Story:hover .Story__date {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+@media only screen and (min-width: 660px) {
+  .Story {
+    width: calc(50% - 7.5px);
+  }
+}
