@@ -1,6 +1,5 @@
 .Stories {
   display: flex;
-  padding: 30px;
   flex-direction: column;
 }
 

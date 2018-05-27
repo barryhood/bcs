@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Api } from "./config/Api";
 import Stories from "./components/Stories";
 import Loader from "./components/Loader";
+import ErrorMsg from "./components/ErrorMsg";
 import "./App.css";
 
 class App extends Component {
@@ -23,20 +24,29 @@ class App extends Component {
   }
 
   async getStories() {
-    const stories = await Api();
-    if (this._isMounted) {
-      this.setState({
-        stories,
-        loading: false
-      });
+    let stories = await Api();
+    if(this._isMounted && stories.error) {
+      this.setState({ error: stories.error, loading: false });
     }
+    if(this._isMounted && !stories.error && stories.length) {
+      this.setState({ stories, loading: false });
+    }
+  }
+
+  renderStories() {
+    if(this.state.stories.length) return (<Stories stories={this.state.stories} />);
+  }
+
+  renderErrorMsg() {
+    if(this.state.error) return (<ErrorMsg errorMsg={this.state.error} />);
   }
 
   render() {
     return (
       <div className="App">
         {this.state.loading && <Loader />}
-        <Stories stories={this.state.stories} />
+        {this.renderStories()}
+        {this.renderErrorMsg()}
       </div>
     );
   }

@@ -31,3 +31,4 @@ describe('when the Stories component is called with stories data', () => {
   });
 
 });
+
